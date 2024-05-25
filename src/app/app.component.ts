@@ -1,3 +1,5 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
 import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {
@@ -5,17 +7,18 @@ import {
   CdkDropList,
   CdkDropListGroup,
 } from "@angular/cdk/drag-drop";
-import {MainComponent} from "./main/main.component";
-import {HeaderComponent} from "./header/header.component";
+import {MainComponent} from "./components/main/main.component";
+import {HeaderComponent} from "./components/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CdkDropList, CdkDropListGroup, CdkDrag, MainComponent, HeaderComponent],
+  imports: [RouterOutlet, CdkDropList, CdkDropListGroup, CdkDrag, MainComponent, HeaderComponent, TuiRootModule, TuiDialogModule, TuiAlertModule, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+    providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
 
   ngOnInit() {
